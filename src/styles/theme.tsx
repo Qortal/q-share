@@ -138,9 +138,9 @@ const darkTheme = createTheme({
   palette: {
     mode: "dark",
     primary: {
-      main: "#FF1493", // Neon pink
-      dark: "#C6127A", // Darker shade of neon pink
-      light: "#FF5EC4" // Lighter shade of neon pink
+      main: "#007FFF", // Neon pink
+      dark: "#0059B2", // Darker shade of neon pink
+      light: "#3399FF" // Lighter shade of neon pink
     },
     secondary: {
       main: "#007FFF", // Electric blue
