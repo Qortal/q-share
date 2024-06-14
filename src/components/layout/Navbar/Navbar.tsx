@@ -139,7 +139,7 @@ const NavBar: React.FC<Props> = ({
               whiteSpace: "nowrap",
             }}
           >
-            Sharing is caring
+            Q-Share - Global Public File Sharing
           </Typography>
         </Box>
       </ThemeSelectRow>
