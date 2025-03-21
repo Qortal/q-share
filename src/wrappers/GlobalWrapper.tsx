@@ -18,6 +18,7 @@ import { RequestQueue } from "../utils/queue";
 import { EditFile } from "../components/EditFile/EditFile.tsx";
 import { EditPlaylist } from "../components/EditPlaylist/EditPlaylist";
 import ConsentModal from "../components/common/ConsentModal";
+import { useIframe } from "../hooks/useIframe.tsx";
 
 interface Props {
   children: React.ReactNode;
@@ -29,6 +30,7 @@ let timer: number | null = null;
 export const queue = new RequestQueue();
 
 const GlobalWrapper: React.FC<Props> = ({ children, setTheme }) => {
+  useIframe()
   const dispatch = useDispatch();
   const isDragging = useRef(false);
   const [userAvatar, setUserAvatar] = useState<string>("");

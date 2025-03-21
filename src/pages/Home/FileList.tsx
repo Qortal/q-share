@@ -147,7 +147,7 @@ export const FileList = ({ files }: FileListProps) => {
                       }}
                     >
                       {formatBytes(
-                        fileObj?.files.reduce(
+                        fileObj?.files?.reduce(
                           (acc, cur) => acc + (cur?.size || 0),
                           0
                         )
