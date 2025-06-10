@@ -1,6 +1,8 @@
 import React, { useEffect, useMemo, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
+import { CopyLinkButton } from "../../components/common/CopyLinkButton.tsx";
+import { fontSizeMedium } from "../../constants/Misc.ts";
 import { setIsLoadingGlobal } from "../../state/features/globalSlice";
 import { Avatar, Box, Typography, useTheme } from "@mui/material";
 import { RootState } from "../../state/store";
@@ -309,7 +311,7 @@ export const FileContent = () => {
       });
       return categoryDisplay;
     }
-    return "no videodata";
+    return "No file data";
   }, [fileData]);
 
   return (
@@ -404,16 +406,21 @@ export const FileContent = () => {
           </StyledCardHeaderComment>
         </Box>
         <Spacer height="15px" />
-        <Box>
-          <Typography
-            sx={{
-              fontWeight: "bold",
-              fontSize: "16px",
-              userSelect: "none",
-            }}
-          >
-            {categoriesDisplay}
-          </Typography>
+        <Box
+          sx={{
+            display: "flex",
+            alignItems: "center",
+            gap: "10px",
+            fontWeight: "bold",
+            fontSize: fontSizeMedium,
+            userSelect: "none",
+          }}
+        >
+          {categoriesDisplay}
+          <CopyLinkButton
+            link={`qortal://APP/Q-Share/share/${encodeURIComponent(fileData?.user)}/${encodeURIComponent(fileData?.id)}`}
+            tooltipTitle={`Copy page link`}
+          />
         </Box>
         <Spacer height="15px" />
         <Box

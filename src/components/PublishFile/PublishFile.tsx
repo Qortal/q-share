@@ -290,7 +290,15 @@ export const PublishFile = ({ editId, editContent }: NewCrowdfundProps) => {
           {editId ? null : (
             <StyledButton
               color="primary"
-              startIcon={<AddBoxIcon />}
+              startIcon={
+                <AddBoxIcon
+                  sx={{
+                    color: "#66C3FE",
+                    width: "40px",
+                    height: "40px",
+                  }}
+                />
+              }
               onClick={() => {
                 setIsOpen(true);
               }}
