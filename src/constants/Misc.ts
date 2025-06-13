@@ -1,7 +1,6 @@
 export const minPriceSuperlike = 10;
 export const titleFormatter = /[^a-zA-Z0-9\s-_!?()&'",.;:|—~@#$%^*+=<>]/g;
-export const titleFormatterOnSave = /[^a-zA-Z0-9\s-_!()&',.;—~@#$%^+=]/g;
-
+export const titleFormatterOnSave = /[\r\n/<>:"'\\*|?]+/g;
 export const fileMaxSize = 2147; // Size in Megabytes (decimal)
 export const maxSize = fileMaxSize * 1024 * 1024;
 

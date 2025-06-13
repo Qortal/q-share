@@ -13,7 +13,6 @@ export const FileTitle = styled(Typography)(({ theme }) => ({
   fontFamily: "Raleway",
   fontSize: "20px",
   color: theme.palette.text.primary,
-  userSelect: "none",
   wordBreak: "break-word",
 }));
 

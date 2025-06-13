@@ -26,7 +26,7 @@ import { MultiplePublish } from "../common/MultiplePublish/MultiplePublishAll";
 import { TextEditor } from "../common/TextEditor/TextEditor";
 import { extractTextFromHTML } from "../common/TextEditor/utils";
 import { allCategoryData } from "../../constants/Categories/1stCategories.ts";
-import { titleFormatter } from "../../constants/Misc.ts";
+import { titleFormatter, titleFormatterOnSave } from "../../constants/Misc.ts";
 import {
   CategoryList,
   CategoryListRef,
@@ -188,31 +188,7 @@ export const EditFile = () => {
 
         const identifier = `${QSHARE_FILE_BASE}${sanitizeTitle.slice(0, 30)}_${id}`;
 
-        let fileExtension = "";
-        const fileExtensionSplit = file?.name?.split(".");
-        if (fileExtensionSplit?.length > 1) {
-          fileExtension = fileExtensionSplit?.pop() || "";
-        }
-        let firstPartName = fileExtensionSplit[0];
-
-        let filename = firstPartName.slice(0, 15);
-
-        // Step 1: Replace all white spaces with underscores
-
-        // Replace all forms of whitespace (including non-standard ones) with underscores
-        let stringWithUnderscores = filename.replace(/[\s\uFEFF\xA0]+/g, "_");
-
-        // Remove all non-alphanumeric characters (except underscores)
-        let alphanumericString = stringWithUnderscores.replace(
-          /[^a-zA-Z0-9_]/g,
-          ""
-        );
-
-        if (fileExtension) {
-          filename = `${alphanumericString.trim()}.${fileExtension}`;
-        } else {
-          filename = alphanumericString;
-        }
+        const filename = file.name.replaceAll(titleFormatterOnSave, "");
 
         let metadescription =
           `**${categoryListRef.current?.getCategoriesFetchString()}**` +
