@@ -221,10 +221,10 @@ export const PublishFile = ({ editId, editContent }: NewCrowdfundProps) => {
         action: "PUBLISH_QDN_RESOURCE",
         name: name,
         service: "DOCUMENT",
+        identifier: identifier + "_metadata",
         data64: crowdfundObjectToBase64,
         title: title.slice(0, 50),
         description: metadescription,
-        identifier: identifier + "_metadata",
         tag1: QSHARE_FILE_BASE,
         filename: `video_metadata.json`,
       };

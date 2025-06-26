@@ -11,12 +11,13 @@ import {
   VideoUploadDate,
 } from "./FileList-styles.tsx";
 import EditIcon from "@mui/icons-material/Edit";
+import BlockIcon from "@mui/icons-material/Block";
+
 import {
   blockUser,
   setEditFile,
   Video,
 } from "../../state/features/fileSlice.ts";
-import BlockIcon from "@mui/icons-material/Block";
 import AttachFileIcon from "@mui/icons-material/AttachFile";
 import { formatBytes } from "../FileContent/FileContent.tsx";
 import { formatDate } from "../../utils/time.ts";
