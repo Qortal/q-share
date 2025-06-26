@@ -2,6 +2,7 @@ import React, { useEffect, useMemo, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import { CopyLinkButton } from "../../components/common/CopyLinkButton.tsx";
+import { FollowButton } from "../../components/common/FollowButton.tsx";
 import { fontSizeMedium } from "../../constants/Misc.ts";
 import { setIsLoadingGlobal } from "../../state/features/globalSlice";
 import { Avatar, Box, Typography, useTheme } from "@mui/material";
@@ -40,7 +41,8 @@ import {
   getIconsFromObject,
 } from "../../constants/Categories/CategoryFunctions.ts";
 
-export function formatBytes(bytes, decimals = 2) {
+export const formatBytes = (bytes: number | string, decimals = 2) => {
+  bytes = Number(bytes);
   if (bytes === 0) return "0 Bytes";
 
   const k = 1024;
@@ -50,7 +52,7 @@ export function formatBytes(bytes, decimals = 2) {
   const i = Math.floor(Math.log(bytes) / Math.log(k));
 
   return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + " " + sizes[i];
-}
+};
 
 export const FileContent = () => {
   const { name, id } = useParams();
@@ -381,6 +383,8 @@ export const FileContent = () => {
         >
           <StyledCardHeaderComment
             sx={{
+              display: "flex",
+              gap: "20px",
               "& .MuiCardHeader-content": {
                 overflow: "hidden",
               },
@@ -403,6 +407,14 @@ export const FileContent = () => {
                 {name}
               </AuthorTextComment>
             </StyledCardColComment>
+            <FollowButton
+              sx={{ minWidth: "96px" }}
+              followerName={fileData?.user}
+            />
+            <CopyLinkButton
+              link={`qortal://APP/Q-Share/share/${encodeURIComponent(fileData?.user)}/${encodeURIComponent(fileData?.id)}`}
+              tooltipTitle={`Copy page link`}
+            />
           </StyledCardHeaderComment>
         </Box>
         <Spacer height="15px" />
@@ -417,10 +429,6 @@ export const FileContent = () => {
           }}
         >
           {categoriesDisplay}
-          <CopyLinkButton
-            link={`qortal://APP/Q-Share/share/${encodeURIComponent(fileData?.user)}/${encodeURIComponent(fileData?.id)}`}
-            tooltipTitle={`Copy page link`}
-          />
         </Box>
         <Spacer height="15px" />
         <Box
