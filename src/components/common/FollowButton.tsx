@@ -1,7 +1,7 @@
 import { Box, Button, ButtonProps } from "@mui/material";
 import Tooltip, { TooltipProps, tooltipClasses } from "@mui/material/Tooltip";
 
-import { MouseEvent, useEffect, useState } from "react";
+import { MouseEvent, useEffect, useMemo, useState } from "react";
 import { styled } from "@mui/material/styles";
 
 interface FollowButtonProps extends ButtonProps {
@@ -32,51 +32,77 @@ export const FollowButton = ({ followerName, ...props }: FollowButtonProps) => {
   const [followingList, setFollowingList] = useState<string[]>([]);
   const [followingSize, setFollowingSize] = useState<string>("");
   const [followingItemCount, setFollowingItemCount] = useState<string>("");
-  const isFollowingName = () => {
-    return followingList.includes(followerName);
-  };
+  const followerNameMemo = useMemo<string>(() => followerName, [followerName]);
 
   useEffect(() => {
-    qortalRequest({
+    getFollowData();
+  }, [followerNameMemo]);
+
+  const getFollowData = async () => {
+    if (followerNameMemo) {
+      setFollowingList(await getFollowedNames());
+      getFollowSize();
+    }
+  };
+
+  const getFollowedNames = async (): Promise<string[]> => {
+    return await qortalRequest({
       action: "GET_LIST_ITEMS",
       list_name: "followedNames",
-    }).then(followList => {
-      setFollowingList(followList);
     });
-    getFollowSize();
-  }, []);
+  };
 
-  const followName = () => {
-    if (followingList.includes(followerName) === false) {
-      qortalRequest({
+  const getFollowSize = async () => {
+    const publishesList = await qortalRequest({
+      action: "LIST_QDN_RESOURCES",
+      name: followerName,
+      limit: 0,
+      includeMetadata: false,
+    });
+
+    let totalSize = 0;
+    let itemsCount = 0;
+    publishesList.map(publish => {
+      totalSize += +publish.size;
+      itemsCount++;
+    });
+    setFollowingSize(formatBytes(totalSize));
+    setFollowingItemCount(itemsCount.toString());
+  };
+
+  const isFollowingName = () => {
+    return followingList.includes(followerNameMemo);
+  };
+
+  const followName = async () => {
+    if (isFollowingName() === false) {
+      const response: boolean = await qortalRequest({
         action: "ADD_LIST_ITEMS",
         list_name: "followedNames",
         items: [followerName],
-      }).then(response => {
-        if (response === false) console.log("followName failed");
-        else {
-          setFollowingList([...followingList, followerName]);
-          console.log("following Name: ", followerName);
-        }
       });
+      if (response === false) console.log("followName failed");
+      else {
+        setFollowingList([...followingList, followerName]);
+        console.log("following Name: ", followerName);
+      }
     }
   };
-  const unfollowName = () => {
-    if (followingList.includes(followerName)) {
-      qortalRequest({
+  const unfollowName = async () => {
+    if (isFollowingName()) {
+      const response: boolean = await qortalRequest({
         action: "DELETE_LIST_ITEM",
         list_name: "followedNames",
         items: [followerName],
-      }).then(response => {
-        if (response === false) console.log("unfollowName failed");
-        else {
-          const listWithoutName = followingList.filter(
-            item => followerName !== item
-          );
-          setFollowingList(listWithoutName);
-          console.log("unfollowing Name: ", followerName);
-        }
       });
+      if (response === false) console.log("unfollowName failed");
+      else {
+        const listWithoutName = followingList.filter(
+          item => followerName !== item
+        );
+        setFollowingList(listWithoutName);
+        console.log("unfollowing Name: ", followerName);
+      }
     }
   };
 
@@ -100,24 +126,6 @@ export const FollowButton = ({ followerName, ...props }: FollowButtonProps) => {
     width: "96px",
     height: "45px",
     ...props.sx,
-  };
-
-  const getFollowSize = () => {
-    qortalRequest({
-      action: "LIST_QDN_RESOURCES",
-      name: followerName,
-      limit: 0,
-      includeMetadata: false,
-    }).then(publishesList => {
-      let totalSize = 0;
-      let itemsCount = 0;
-      publishesList.map(publish => {
-        totalSize += +publish.size;
-        itemsCount++;
-      });
-      setFollowingSize(formatBytes(totalSize));
-      setFollowingItemCount(itemsCount.toString());
-    });
   };
 
   function formatBytes(bytes: number, decimals = 2) {
