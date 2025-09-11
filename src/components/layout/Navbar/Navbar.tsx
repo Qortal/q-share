@@ -50,6 +50,8 @@ interface Props {
   userAvatar: string;
   authenticate: () => void;
   setTheme: (val: string) => void;
+  accountNames: { name: string }[];
+  setActiveName: (name: string) => void;
 }
 
 const NavBar: React.FC<Props> = ({
@@ -58,6 +60,8 @@ const NavBar: React.FC<Props> = ({
   userAvatar,
   authenticate,
   setTheme,
+  accountNames,
+  setActiveName,
 }) => {
   const windowSize = useWindowSize();
   const searchValRef = useRef("");
@@ -426,6 +430,22 @@ const NavBar: React.FC<Props> = ({
             horizontal: "left",
           }}
         >
+          {accountNames
+            .filter(n => n.name)
+            .map(n => (
+              <DropdownContainer
+                key={n.name}
+                onClick={() => {
+                  setActiveName(n.name);
+                  handleCloseUserDropdown();
+                }}
+              >
+                <DropdownText>
+                  {n.name === userName ? "✔︎ " : ""}
+                  {n.name}
+                </DropdownText>
+              </DropdownContainer>
+            ))}
           <DropdownContainer
             onClick={() => {
               setIsOpenBlockedNamesModal(true);

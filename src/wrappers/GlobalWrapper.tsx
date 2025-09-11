@@ -8,6 +8,11 @@ import React, {
 import { useDispatch, useSelector } from "react-redux";
 
 import { addUser } from "../state/features/authSlice";
+import {
+  getAccountNames,
+  getPrimaryAccountName,
+  NameRecord,
+} from "../utils/qortalRequestFunctions";
 import NavBar from "../components/layout/Navbar/Navbar";
 import PageLoader from "../components/common/PageLoader";
 import { RootState } from "../state/store";
@@ -69,9 +74,16 @@ const GlobalWrapper: React.FC<Props> = ({ children, setTheme }) => {
 
   useEffect(() => {
     if (!username) return;
-
     getAvatar(username);
   }, [username, getAvatar]);
+
+  const switchActiveName = useCallback(
+    (newName: string) => {
+      if (!user) return;
+      dispatch(addUser({ ...user, name: newName }));
+    },
+    [user, dispatch]
+  );
 
   const { isLoadingGlobal } = useSelector((state: RootState) => state.global);
 
@@ -95,8 +107,9 @@ const GlobalWrapper: React.FC<Props> = ({ children, setTheme }) => {
         action: "GET_USER_ACCOUNT",
       });
 
-      const name = await getNameInfo(account.address);
-      dispatch(addUser({ ...account, name }));
+      const names = await getAccountNames(account.address);
+      const primary = await getPrimaryAccountName(account.address);
+      dispatch(addUser({ ...account, name: primary, names }));
     } catch (error) {
       console.error(error);
     }
@@ -136,6 +149,8 @@ const GlobalWrapper: React.FC<Props> = ({ children, setTheme }) => {
         setTheme={(val: string) => setTheme(val)}
         isAuthenticated={!!user?.name}
         userName={user?.name || ""}
+        accountNames={user?.names || []}
+        setActiveName={switchActiveName}
         userAvatar={userAvatar}
         authenticate={askForAccountInformation}
       />
