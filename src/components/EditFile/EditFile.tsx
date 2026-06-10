@@ -26,7 +26,11 @@ import { MultiplePublish } from "../common/MultiplePublish/MultiplePublishAll";
 import { TextEditor } from "../common/TextEditor/TextEditor";
 import { extractTextFromHTML } from "../common/TextEditor/utils";
 import { allCategoryData } from "../../constants/Categories/1stCategories.ts";
-import { titleFormatter, titleFormatterOnSave } from "../../constants/Misc.ts";
+import {
+  maxSize,
+  titleFormatter,
+  titleFormatterOnSave,
+} from "../../constants/Misc.ts";
 import {
   CategoryList,
   CategoryListRef,
@@ -78,7 +82,7 @@ export const EditFile = () => {
 
   const { getRootProps, getInputProps } = useDropzone({
     maxFiles: 10,
-    maxSize: 419430400, // 400 MB in bytes
+    maxSize,
     onDrop: (acceptedFiles, rejectedFiles) => {
       const formatArray = acceptedFiles.map(item => {
         return {

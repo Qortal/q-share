@@ -128,7 +128,7 @@ export const FollowButton = ({ followerName, ...props }: FollowButtonProps) => {
     ...props.sx,
   };
 
-  function formatBytes(bytes: number, decimals = 2) {
+  const  formatBytes = (bytes: number, decimals = 2)=> {
     if (!+bytes) return "0 Bytes";
 
     const k = 1024;
