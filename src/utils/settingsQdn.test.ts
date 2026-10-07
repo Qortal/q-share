@@ -58,13 +58,13 @@ describe("settings sync to QDN", () => {
       service: "DOCUMENT",
       name: "alice",
       identifier: SETTINGS_IDENTIFIER,
-      title: "Q-Share+ settings",
+      title: "Q-Share settings",
       filename: "settings.json",
     });
     expect(JSON.parse(atob(call.data64))).toEqual(snap);
     expect(snap.uiTheme).toBe("hub20");
     const built = await buildSettingsPublish("alice", snap);
-    expect(built.identifier).toBe("qshareplus_settings");
+    expect(built.identifier).toBe("qshare_settings");
   });
 
   it("rejects when Hub declines the publish", async () => {

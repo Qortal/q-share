@@ -1,6 +1,6 @@
 /**
  * Rich-text descriptions are stored as raw HTML in `htmlDescription` (see the
- * data contract in docs/apps/Q-Share+.md). The original Q-Share writes and
+ * data contract in https://github.com/SJQortal/Q-Apps-Plus/blob/main/docs/apps/Q-Share%2B.md). The original Q-Share writes and
  * renders them with Quill 1.3 (react-quill 2); this app uses Quill 2
  * (react-quill-new). Quill 2's `getSemanticHTML()` differs from what Quill 1
  * stored, so everything published from here is normalised back to the

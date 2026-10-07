@@ -21,11 +21,11 @@ describe("qortal:// links", () => {
     expect(shareLink("bob", "id")).toBe("qortal://APP/Some%20App/share/bob/id");
   });
 
-  it("points at Q-Share+ in Hub Dev Mode, where _qdnName is empty", () => {
+  it("points at Q-Share in Hub Dev Mode, where _qdnName is empty", () => {
     setAppName("");
-    expect(shareLink("bob", "id")).toBe("qortal://APP/Q-Share+/share/bob/id");
+    expect(shareLink("bob", "id")).toBe("qortal://APP/Q-Share/share/bob/id");
     setAppName(undefined);
-    expect(profileLink("bob")).toBe("qortal://APP/Q-Share+/channel/bob");
+    expect(profileLink("bob")).toBe("qortal://APP/Q-Share/channel/bob");
   });
 
   it("still encodes the name and identifier path segments", () => {

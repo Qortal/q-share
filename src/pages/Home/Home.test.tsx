@@ -98,7 +98,7 @@ describe('Home first load', () => {
 
   it('the Following chip re-runs the search with followedonly=true and hidden names are filtered', async () => {
     store.dispatch(addUser({ address: 'Qabc', publicKey: 'k', name: 'alice', names: [{ name: 'alice', owner: 'Qabc' }] }));
-    localStorage.setItem('qshareplus-settings', JSON.stringify({ hiddenNames: ['spammer'] }));
+    localStorage.setItem('qshare-settings', JSON.stringify({ hiddenNames: ['spammer'] }));
     resetSettingsCache();
     mockFetch('/arbitrary/resources/search', (url) => {
       if (url.searchParams.get('followedonly') === 'true') {
@@ -978,7 +978,7 @@ describe('Home after Back, once Settings or the layout changed', () => {
 
 describe('Home with hidden names', () => {
   const hide = (names: string[]) => {
-    localStorage.setItem('qshareplus-settings', JSON.stringify({ hiddenNames: names }));
+    localStorage.setItem('qshare-settings', JSON.stringify({ hiddenNames: names }));
     resetSettingsCache();
   };
   const row = (name: string, slug: string, created: number) => ({

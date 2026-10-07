@@ -23,7 +23,7 @@ export class ErrorBoundary extends Component<Props, State> {
   }
 
   componentDidCatch(error: unknown, info: ErrorInfo): void {
-    console.error("Q-Share+ crashed while rendering:", error, info.componentStack);
+    console.error("Q-Share crashed while rendering:", error, info.componentStack);
   }
 
   private reload = () => {

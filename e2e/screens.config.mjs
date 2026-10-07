@@ -1,7 +1,7 @@
 /**
- * Q-Share+ for the shared screenshot check (scripts/screens.mjs):
+ * Q-Share for the screenshot check (e2e/screens.mjs):
  *
- *   scripts/screens.mjs Q-Share+ [--only home,share] [--themes hub30] [--mode light]
+ *   node e2e/screens.mjs [--only home,share] [--themes hub30] [--mode light]
  *
  * Fixtures: 24 shares from three publishers (one with a "+" in its name), a
  * four-file share (image, text, PDF, audio), a comment thread with a reply and
@@ -46,8 +46,8 @@ let PNG = Buffer.from(
 const json = (route, data) => route.fulfill({ status: 200, contentType: 'application/json', body: JSON.stringify(data) });
 
 export default {
-  name: 'Q-Share+',
-  themeKey: 'qshareplus-ui-theme',
+  name: 'Q-Share',
+  themeKey: 'qshare-ui-theme',
   dismiss: ['I understand'],
 
   async setup({ browser }) {

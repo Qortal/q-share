@@ -1,63 +1,80 @@
-# Q-Share+
+# Q-Share
 
-This is the **+** version of [Qortal's Q-Share](https://github.com/Qortal/q-share), the public file-sharing Q-App, maintained in [SJQortal/Q-Apps-Plus](https://github.com/SJQortal/Q-Apps-Plus). It reads and writes the same QDN data as the original: your shares, files and comments show up in both, and anything published here still works in Q-Share.
+Qortal's public file-sharing Q-App. Publish files with a title, description and category, browse and search everyone's shares, preview and download them, comment, follow publishers, and save shares to collections.
 
-What it adds:
+**Version 2.0** is a redesign first published as Q-Share+ 1.0.0 (2026-09-30), built by Simon James in [SJQortal/Q-Apps-Plus](https://github.com/SJQortal/Q-Apps-Plus). It reads and writes the same QDN data as Q-Share 1.0: shares, files and comments made with either version show up in both, and nothing needs migrating. `CHANGELOG.md` lists every change.
 
-- a phone layout for GO and narrow screens: bottom bar, floating Share button, bottom sheets, full-screen forms with Publish above the keyboard, pull-to-refresh;
-- collections (`qshare_collection_` documents, additive), previews for PDF, text, image, audio and video, a drag-and-drop publish flow with progress and retry;
-- the Hub 3.0 look with four themes (Hub 3.0, Q-Share Classic, Black, White) and a Settings page;
-- the current stack: React 19.3, MUI 9.4, Vite 8, with a vitest harness and an ESLint 9 config;
-- a Quill 2 description editor that keeps the stored format readable in the original app.
+## What's new in 2.0
 
-See `CHANGELOG.md` for versions and `docs/apps/Q-Share+.md` in the monorepo for the audit, plan and status.
+- **The current stack:** React 19.3, MUI 9.4, Redux Toolkit 2, Vite 8 and TypeScript 5.9.
+  - A Quill 2 editor that still stores descriptions in the Quill 1 markup 1.0 reads.
+  - ESLint 9 with the React hooks rules, and about 490 vitest tests.
+- **Built for phones and GO:**
+  - a bottom bar and a Share button;
+  - a header that hides as you scroll;
+  - filters in a bottom sheet, and pull-to-refresh;
+  - full-screen Share and Edit forms with Publish kept above the keyboard;
+  - 44 px targets, and a compact layout for phones held sideways.
+- **Four themes** (Hub 3.0, Q-Share Classic, Black, White):
+  - they follow Hub's light/dark switch without a reload;
+  - text contrast is at least 4.5:1;
+  - Settings → Appearance switches between them.
+- **Finding shares:**
+  - a Following feed;
+  - My shares for one or all of your names;
+  - name suggestions in the publisher filter;
+  - list or grid view;
+  - hidden names.
+- **Share pages:**
+  - previews for images, text, audio and video, and PDFs in Hub's own reader;
+  - Fetch all, and Save all as .zip;
+  - safe rendering of descriptions (DOMPurify 3.4, links built on the DOM).
+- **Publishing:**
+  - drag and drop, sizes and a total;
+  - a draft that survives closing;
+  - Hub's progress per file;
+  - retries that check QDN first, so a fee is never paid twice.
+- **Collections:** named lists of shares, on their own page and on profiles.
+- **Settings:** name switcher, content options, blocked names, statistics, and an optional Sync of settings to QDN.
+- **Lighter on Qortal:**
+  - paged and cached searches, with no unlimited (`limit: 0`) queries;
+  - lazy avatars;
+  - polling that stops when the tab is hidden;
+  - a first download about a quarter of 1.0's size.
 
 ## Develop
 
 ```bash
 npm ci
-npm run dev        # Qortal calls need Hub; tests use the mocks in src/test/setup.ts
+npm run dev          # Qortal calls need Hub (Dev Mode); tests use the mocks in src/test/setup.ts
 npm test
 npm run lint
 npm run build
-../../scripts/screens.mjs Q-Share+   # every screen at five sizes in four themes, with checks (config: e2e/screens.config.mjs)
+node e2e/screens.mjs # every screen at 5 sizes in 4 themes, with overflow, accessibility (axe) and call-count checks
 ```
 
-Publish zips are built from the monorepo root with `scripts/build-zip.sh Q-Share+`.
+The screenshot check needs Playwright, either a global `playwright`, or `playwright-core` plus a Chromium-based browser in `QPLUS_CHROMIUM`. See the header of `e2e/screens.mjs`.
 
-## Merging this back into Q-Share
+To publish, zip the contents of `dist/` with `index.html` at the root, and publish the zip in Hub as an `APP` resource under the name `Q-Share`.
 
-Q-Share+ was imported into the monorepo with `git subtree`, so this folder's history still sits on top of Q-Share's own: all 31 commits of [Qortal/q-share](https://github.com/Qortal/q-share) `main` up to `9c1ca81`, with their original hashes, then the Q-Share+ commits.
+## Data
 
-The branch [`q-share-plus/for-upstream`](https://github.com/SJQortal/Q-Apps-Plus/tree/q-share-plus/for-upstream) is that history ready to merge, with this folder as its root (split at version 1.0.1). In a clone of Qortal/q-share:
+Shares, files and comments use the same services, identifiers and JSON shapes as 1.0:
+- `qshare_file_…` DOCUMENT and FILE resources;
+- BLOG_COMMENT comments;
+- descriptions in Quill 1 markup.
 
-```bash
-git fetch https://github.com/SJQortal/Q-Apps-Plus.git q-share-plus/for-upstream
-git merge FETCH_HEAD
-```
+Two kinds of data are new, and 1.0 ignores both:
+- collections: DOCUMENT resources named `qshare_collection_…`;
+- the optional settings sync: a DOCUMENT named `qshare_settings` under the user's name.
 
-To split it yourself, for example to include later changes:
+## Notes for maintainers
 
-```bash
-# In a clone of SJQortal/Q-Apps-Plus: this folder's history as a branch of its own
-git subtree split --prefix="apps/Q-Share+" origin/main -b q-share-plus
-# (use origin/q-share-plus/pass-1 instead of origin/main until PR #7 is merged)
-
-# In a clone of Qortal/q-share
-git fetch /path/to/Q-Apps-Plus q-share-plus
-git merge FETCH_HEAD
-```
-
-As of 2026-10-01 Q-Share's `main` has not moved since `9c1ca81`, so the merge is a fast-forward. Each commit is one change with a message that explains it; the full audit, the data contract and the test records are in [docs/apps/Q-Share+.md](https://github.com/SJQortal/Q-Apps-Plus/blob/613ff3ba58270c31b827003145045ed803a44ba1/docs/apps/Q-Share%2B.md).
-
-**Data:** shares, files and comments use the same services, identifiers and JSON shapes as Q-Share, and descriptions are stored in the Quill 1 markup Q-Share writes, so nothing needs migrating. Two kinds of data are new, and Q-Share ignores both: collections (DOCUMENT `qshare_collection_…`) and the optional Settings sync snapshot (DOCUMENT `qshareplus_settings`).
-
-**What is specific to the + build**, to change if it ships as Q-Share:
-
-- the app name in copied `qortal://APP/…` links: `PUBLISHED_APP_NAME` in `src/utils/qortalLinks.ts`;
-- the visible name: `index.html`, the header (`src/components/layout/Navbar/Navbar.tsx`), the welcome notice (`src/components/common/ConsentModal.tsx`), Settings → About and the What's new dialog;
-- the version and changelog: `package.json` (`qshare-plus`), `CHANGELOG.md` and `src/constants/changelog.ts`, which links to this repo;
-- browser storage keys starting with `qshareplus-` (theme, settings, share statistics) and the sync identifier above; renaming them means existing Q-Share+ users start with default settings;
-- `src/hub-theme/`, a copy of the monorepo's shared theme kit (`shared/hub-theme`), which would simply become part of the app.
-
-Removed from the original (listed in `CHANGELOG.md`): code carried over from Q-Tube that never ran (its video player and playlist screens), unused fonts, and the moment, react-quill, react-rnd, compressorjs and ts-key-enum dependencies.
+- **Theme kit:** `src/hub-theme/` is the theme kit from [SJQortal/Q-Apps-Plus](https://github.com/SJQortal/Q-Apps-Plus) (`shared/hub-theme`), copied in. Edit it here, or copy in later versions from there.
+- **Link name:** copied `qortal://APP/…` links use `PUBLISHED_APP_NAME` in `src/utils/qortalLinks.ts`. Hub never decodes the app name, so it's written exactly as registered.
+- **History:** every change in this history is its own commit, with a message that explains it.
+- **Records:** the full audit, data contract, Hub test records and the list of Hub pitfalls found are in [docs/apps/Q-Share+.md](https://github.com/SJQortal/Q-Apps-Plus/blob/main/docs/apps/Q-Share%2B.md).
+- **Removed** (all unused, listed in `CHANGELOG.md`):
+  - code carried over from Q-Tube that never ran (its video player and playlist screens);
+  - unused fonts;
+  - the moment, react-quill, react-rnd, compressorjs and ts-key-enum dependencies.

@@ -174,9 +174,9 @@ const NavBar: React.FC<Props> = ({
     <CustomAppBar ref={headerRef} position="sticky" elevation={0} collapsed={hidden} onFocus={reveal}>
       <HeaderInner>
         <Brand>
-          <LogoContainer type="button" onClick={() => navigate("/")} aria-label="Q-Share+ home">
+          <LogoContainer type="button" onClick={() => navigate("/")} aria-label="Q-Share home">
             <img src={QShareLogoSrc} alt="" width={36} height={36} style={{ width: "auto", height: 36 }} />
-            <AppTitle>Q-Share+</AppTitle>
+            <AppTitle>Q-Share</AppTitle>
           </LogoContainer>
           {/* Beside the title, outside the button, so the button's name holds all its visible text. */}
           {!phone && (

@@ -2,26 +2,18 @@
 
 Newest first. The in-app copy lives in `src/constants/changelog.ts` (Settings → About → What's new).
 
-## 1.0.1 (not published yet)
+## 2.0.0 (2026-10-07)
 
-Changes since the published 1.0.0:
-
-- Share pages: audio and video files say **Play audio** / **Play video** (with a play icon) and **Close player** once open, instead of "Preview"; the player's error message and fallback name say so too. Images and text keep "Preview".
-- File types found in real shares: subtitles (.srt, .vtt) and checksum files (.md5, .sha*) preview as text, audiobooks (.m4b) and WebM audio (.weba) play, and comic books (.cbz, .cbr) are listed as documents.
-- Editor: the description placeholder no longer sits on top of the first word while a phone keyboard (or a desktop IME) is still composing it.
-- 490 tests; lint clean.
-
-## 1.0.0 (2026-09-30)
-
-Published on QDN as `Q-Share+` on 2026-09-30, built from commit `2bc12cc`.
+Q-Share 2.0 is the redesign Simon James built and published as **Q-Share+** 1.0.0 on 2026-09-30, plus the fixes that followed, in [SJQortal/Q-Apps-Plus](https://github.com/SJQortal/Q-Apps-Plus), merged back into Q-Share. Every change is its own commit in this history; the audit, data contract and test records are in [docs/apps/Q-Share+.md](https://github.com/SJQortal/Q-Apps-Plus/blob/main/docs/apps/Q-Share%2B.md).
 
 
-The first release of Q-Share+. It reads and writes the same QDN data as Q-Share: your shares, files and comments show up in both, and anything published here still works in the original. Collections and synced settings are new, additive data that Q-Share ignores.
+
+A redesign of Q-Share on the current stack. It reads and writes the same QDN data as Q-Share 1.0: your shares, files and comments are the ones you already have, and anything published with 2.0 still opens in 1.0. Collections and synced settings are new, additive data that 1.0 ignores.
 
 **Platform and quality**
 - React 19.3, MUI 9.4, Redux Toolkit 2, react-router 6.30 (v7 flags), Vite 8, TypeScript 5.9.
 - The editor runs on Quill 2 (react-quill-new); published descriptions are normalised to the Quill 1 markup the original stores, and old descriptions render with the app's own styles. Text and highlight colours are gone from the toolbar (they vanished in other themes) and pasted colours are dropped.
-- ESLint 9 with the React hooks rules (clean), 487 vitest tests, an error boundary, and a screenshot harness (`e2e/screens.mjs`) that checks every screen at five sizes in four themes with an axe-core accessibility audit.
+- ESLint 9 with the React hooks rules (clean), 487 vitest tests, an error boundary, and a screenshot check (`node e2e/screens.mjs`) that checks every screen at five sizes in four themes with an axe-core accessibility audit.
 - Removed: moment, react-quill, the unreachable Q-Tube player and playlist code, react-rnd, compressorjs and ts-key-enum.
 
 **Looks and phones**
@@ -39,7 +31,7 @@ The first release of Q-Share+. It reads and writes the same QDN data as Q-Share:
 - Previews: images with a lightbox, text, audio and video once the file is on the node, PDFs in Hub's own reader. Fetch all files, big Download buttons, Save all as .zip (up to 150 MB), Edit share for the owner, Copy link, Add to collection.
 - Descriptions are sanitised on the DOM: no script, styles, forms or relative links; `qortal://` links work (DOMPurify 3.4).
 - Downloads: a list with progress, Save on every ready file, and Clear finished; polling stops when a file is ready or the tab is hidden; GO and files over 100 MB stream from the node; declines in Hub are not errors.
-- Copied links use `qortal://APP/Q-Share+/…`, which Hub opens (the router also accepts the `%2B` spelling).
+- Copied links open the share directly: `qortal://APP/Q-Share/share/<name>/<id>` (Hub never decodes the app name, so links are built with it as written).
 
 **Publishing**
 - Drag and drop or tap to choose, type icons, sizes and a running total, remove before publishing, a draft that survives closing the dialog.
@@ -54,3 +46,8 @@ The first release of Q-Share+. It reads and writes the same QDN data as Q-Share:
 **Qortal efficiency**
 - Every search goes through one helper: pages of 20, in-flight merge, a 2-minute cache, never `limit=0`. Home's first load is one paged search plus the bodies of what shows; a share opens with one search and one fetch, or none when cached; comment threads take two searches; avatars load lazily by URL.
 - Biggest JS chunk 1,123 kB → 265 kB; routes, the editor and secondary screens load on demand.
+
+**Since Q-Share+ 1.0.0**
+- Share pages: audio and video files say **Play audio** / **Play video** (with a play icon) and **Close player** once open, instead of "Preview"; the player's error message and fallback name say so too. Images and text keep "Preview".
+- File types found in real shares: subtitles (.srt, .vtt) and checksum files (.md5, .sha*) preview as text, audiobooks (.m4b) and WebM audio (.weba) play, and comic books (.cbz, .cbr) are listed as documents.
+- Editor: the description placeholder no longer sits on top of the first word while a phone keyboard (or a desktop IME) is still composing it.

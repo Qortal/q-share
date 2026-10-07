@@ -45,7 +45,7 @@ describe('FileList row actions', () => {
     fireEvent.click(screen.getByRole('button', { name: 'Copy link' }));
 
     await screen.findByRole('dialog', { name: 'Copy link' });
-    expect(screen.getByDisplayValue('qortal://APP/Q-Share+/share/Simon%20James/qshare_file_nocopy_Nc1234_metadata')).toBeInTheDocument();
+    expect(screen.getByDisplayValue('qortal://APP/Q-Share/share/Simon%20James/qshare_file_nocopy_Nc1234_metadata')).toBeInTheDocument();
     expect(alerts().alertError).toBe('');
   });
 
@@ -276,7 +276,7 @@ describe('FileList grid', () => {
     renderWithProviders(<FileList files={[row]} />);
     fireEvent.click(screen.getByRole('button', { name: 'Copy link' }));
     await screen.findByRole('dialog', { name: 'Copy link' });
-    expect(screen.getByDisplayValue('qortal://APP/Q-Share+/share/Simon%20James/qshare_file_grid-copy_Gc1234_metadata')).toBeInTheDocument();
+    expect(screen.getByDisplayValue('qortal://APP/Q-Share/share/Simon%20James/qshare_file_grid-copy_Gc1234_metadata')).toBeInTheDocument();
   });
 
   it('lays cards out in ~220 px columns, two on phones and one below 350 px, none wider than its column', () => {

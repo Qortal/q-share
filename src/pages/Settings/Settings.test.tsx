@@ -68,7 +68,7 @@ describe('Settings → Sync', () => {
     expect(readSettings().hiddenNames).toEqual(['x']);
     expect(readSettings().listView).toBe('grid');
     expect(screen.getByRole('button', { name: 'Grid' })).toHaveAttribute('aria-pressed', 'true');
-    expect(JSON.parse(localStorage.getItem('qshareplus-ui-theme') || '""')).toBe('black');
+    expect(JSON.parse(localStorage.getItem('qshare-ui-theme') || '""')).toBe('black');
     expect(await screen.findByRole('status')).toHaveTextContent(/Restored the settings saved/);
 
     mockQortalAction('FETCH_QDN_RESOURCE', () => {

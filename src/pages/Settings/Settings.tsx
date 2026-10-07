@@ -367,7 +367,7 @@ export const Settings = () => {
             Hidden names
           </Typography>
           <Typography variant="body2" color="text.secondary">
-            Hide these names' shares and comments in Q-Share+ only. This is not a Qortal block; use Blocked names for that.
+            Hide these names' shares and comments in Q-Share only. This is not a Qortal block; use Blocked names for that.
           </Typography>
           <Box sx={{ display: "flex", gap: 1, mt: 1.5, flexWrap: "wrap" }}>
             <TextField
@@ -488,9 +488,9 @@ export const Settings = () => {
         <SectionTitle>About</SectionTitle>
         <Row>
           <Box>
-            <Typography sx={{ fontWeight: 700 }}>Q-Share+ {APP_VERSION}</Typography>
+            <Typography sx={{ fontWeight: 700 }}>Q-Share {APP_VERSION}</Typography>
             <Typography variant="body2" color="text.secondary">
-              Simon's version of Qortal's Q-Share. It reads and writes the same QDN data.
+              Qortal's public file-sharing Q-App. Version 2 was built as Q-Share+ by Simon James.
             </Typography>
           </Box>
           <Button variant="outlined" onClick={() => setChangelogOpen(true)}>
@@ -498,10 +498,10 @@ export const Settings = () => {
           </Button>
         </Row>
         <Typography variant="body2" color="text.secondary" sx={{ mt: 1, wordBreak: "break-all" }}>
-          Source: {PLUS_REPO}
+          Source: {UPSTREAM_REPO}
         </Typography>
         <Typography variant="body2" color="text.secondary" sx={{ wordBreak: "break-all" }}>
-          Upstream: {UPSTREAM_REPO}
+          Built as Q-Share+ in: {PLUS_REPO}
         </Typography>
       </Section>
 

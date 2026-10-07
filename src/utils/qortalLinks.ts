@@ -1,10 +1,10 @@
 /**
  * Deep links and Hub navigation for a name that may contain spaces or `+`.
- * Core injects `_qdnName` with the app's registered name (e.g. "Q-Share+"),
+ * Core injects `_qdnName` with the app's registered name (e.g. "Q-Share"),
  * so links copied here open in whichever app is running.
  */
 /** This app's published name: the fallback in Hub Dev Mode, where `_qdnName` is "". */
-const PUBLISHED_APP_NAME = "Q-Share+";
+const PUBLISHED_APP_NAME = "Q-Share";
 
 export function currentAppName(): string {
   if (typeof window === "undefined") return PUBLISHED_APP_NAME;

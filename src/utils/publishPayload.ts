@@ -1,6 +1,6 @@
 /**
  * Builds the QDN resources for a share, exactly the way the original Q-Share
- * does (docs/apps/Q-Share+.md → Data contract). Both the Share and the Update
+ * does (https://github.com/SJQortal/Q-Apps-Plus/blob/main/docs/apps/Q-Share%2B.md → Data contract). Both the Share and the Update
  * dialog call this, so the stored format has one source of truth and the
  * tests in publishPayload.test.ts pin it:
  *

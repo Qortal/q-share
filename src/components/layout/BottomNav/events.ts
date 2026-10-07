@@ -6,7 +6,7 @@
  *
  *   window.addEventListener(OPEN_DOWNLOADS_EVENT, (e) => { e.preventDefault(); open(); });
  */
-export const OPEN_DOWNLOADS_EVENT = "qshareplus:open-downloads";
+export const OPEN_DOWNLOADS_EVENT = "qshare:open-downloads";
 
 /** Dispatches the event; returns true when a listener handled it. */
 export function requestOpenDownloads(): boolean {

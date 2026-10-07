@@ -6,7 +6,7 @@ import { searchQdnAll } from "./qdnSearch";
  * unlimited search. They now load on demand from Settings, in bounded pages,
  * and are kept for an hour on this device.
  */
-export const STATS_STORAGE_KEY = "qshareplus-share-stats";
+export const STATS_STORAGE_KEY = "qshare-share-stats";
 export const STATS_TTL_MS = 60 * 60 * 1000;
 export const STATS_MAX_ROWS = 3000;
 

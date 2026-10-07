@@ -5,7 +5,7 @@ import { store } from "../../state/store";
 import { removeNotification } from "../../state/features/notificationsSlice";
 import { CopyLinkButton } from "./CopyLinkButton";
 
-const LINK = "qortal://APP/Q-Share+/share/Alice%20Smith/qshare_file_x";
+const LINK = "qortal://APP/Q-Share/share/Alice%20Smith/qshare_file_x";
 
 /** A frame on a plain-http LAN node: no clipboard API, only execCommand. */
 const insecureFrame = (execResult: boolean) => {

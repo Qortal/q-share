@@ -43,7 +43,7 @@ export default function ConsentModal() {
     <ResponsiveDialog
       open={open}
       onClose={() => setOpen(false)}
-      title="Welcome to Q-Share+"
+      title="Welcome to Q-Share"
       maxWidth="sm"
       dismissible={false}
       actions={
@@ -53,7 +53,7 @@ export default function ConsentModal() {
       }
     >
       <Typography sx={{ fontSize: 15, lineHeight: 1.6 }}>
-        Q-Share+ is an early version and may still have bugs. The Qortal community, its development team and
+        Q-Share is an early version and may still have bugs. The Qortal community, its development team and
         the creators of this application cannot be held accountable for any content published or displayed, for
         any loss of coin caused by bad actors or bugs in the application, or for any data loss that may occur
         from using it. They bear no responsibility for content uploaded by users.
