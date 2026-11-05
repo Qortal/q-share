@@ -13,10 +13,10 @@ import { fetchQdnResource, needsEncodedFetch } from "./fetchVideos";
  * Nothing here runs on its own: Save publishes (Hub confirms, the usual fee
  * applies) and Restore fetches, both only when pressed on the Settings page.
  */
-export const SETTINGS_IDENTIFIER = "qshareplus_settings";
+export const SETTINGS_IDENTIFIER = "qshare_settings";
 export const SETTINGS_SERVICE = "DOCUMENT";
 export const SETTINGS_FILENAME = "settings.json";
-export const SETTINGS_TITLE = "Q-Share+ settings";
+export const SETTINGS_TITLE = "Q-Share settings";
 export const SETTINGS_SNAPSHOT_VERSION = 1;
 
 export interface SettingsSnapshot extends AppSettings {

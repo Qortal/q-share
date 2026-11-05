@@ -9,19 +9,19 @@ describe('ConsentModal', () => {
     await localForage.removeItem('general-consent');
     renderWithProviders(<ConsentModal />);
 
-    expect(await screen.findByRole('heading', { name: 'Welcome to Q-Share+' })).toBeInTheDocument();
+    expect(await screen.findByRole('heading', { name: 'Welcome to Q-Share' })).toBeInTheDocument();
     // Opening alone must not count as consent.
     expect(await localForage.getItem('general-consent')).toBeNull();
 
     fireEvent.click(screen.getByRole('button', { name: 'I understand' }));
     await waitFor(async () => expect(await localForage.getItem('general-consent')).toBe(true));
-    await waitFor(() => expect(screen.queryByRole('heading', { name: 'Welcome to Q-Share+' })).not.toBeInTheDocument());
+    await waitFor(() => expect(screen.queryByRole('heading', { name: 'Welcome to Q-Share' })).not.toBeInTheDocument());
   });
 
   it('stays closed once consent is stored', async () => {
     await localForage.setItem('general-consent', true);
     renderWithProviders(<ConsentModal />);
     await new Promise((r) => setTimeout(r, 20));
-    expect(screen.queryByRole('heading', { name: 'Welcome to Q-Share+' })).not.toBeInTheDocument();
+    expect(screen.queryByRole('heading', { name: 'Welcome to Q-Share' })).not.toBeInTheDocument();
   });
 });

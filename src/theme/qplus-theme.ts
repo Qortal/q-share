@@ -2,7 +2,7 @@ import type { AppThemeConfig } from "../hub-theme";
 import { darkThemeOptions, lightThemeOptions } from "../styles/theme";
 
 /** localStorage key for the chosen theme; must match the boot snippet in index.html. */
-export const THEME_STORAGE_KEY = "qshareplus-ui-theme";
+export const THEME_STORAGE_KEY = "qshare-ui-theme";
 
 export const themeConfig: AppThemeConfig = {
   hub20: {

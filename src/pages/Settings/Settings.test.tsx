@@ -73,7 +73,7 @@ describe('Settings → Sync', () => {
       'aria-pressed',
       'true'
     );
-    expect(JSON.parse(localStorage.getItem('qshareplus-ui-theme') || '""')).toBe('black');
+    expect(JSON.parse(localStorage.getItem('qshare-ui-theme') || '""')).toBe('black');
     expect(await screen.findByRole('status')).toHaveTextContent(/Restored the settings saved/);
 
     mockQortalAction('FETCH_QDN_RESOURCE', () => {

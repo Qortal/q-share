@@ -18,7 +18,7 @@ import type { PlayerShare, Track } from "../../state/features/playerSlice";
 import type { RootState } from "../../state/store";
 import { usePlaylistControls } from "./PlaylistCard";
 
-/** One entry of a share's `files` array (docs/apps/Q-Share+.md, data contract). */
+/** One entry of a share's `files` array (https://github.com/SJQortal/Q-Apps-Plus/blob/main/docs/apps/Q-Share%2B.md, data contract). */
 export interface ShareFile {
   filename: string;
   identifier: string;

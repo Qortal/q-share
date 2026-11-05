@@ -33,7 +33,7 @@ export const ChangelogDialog = ({ open, onClose }: ChangelogDialogProps) => {
       >
         <Box sx={{ flex: 1, minWidth: 0 }}>
           <Typography component="span" sx={{ fontWeight: 700, fontSize: 18, display: "block" }}>
-            What's new in Q-Share+
+            What's new in Q-Share
           </Typography>
           <Typography variant="body2" color="text.secondary">
             You are on {APP_VERSION}

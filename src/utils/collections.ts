@@ -1,5 +1,5 @@
 /**
- * Collections are a Q-Share+ addition (CLAUDE.md rule 1: additive data only).
+ * Collections are new in 2.0: additive data, ignored by older versions of Q-Share.
  * A collection is one DOCUMENT `qshare_collection_<slug>_<uid>` whose JSON
  * body lists shares by publisher name and metadata identifier. The original
  * Q-Share never searches this prefix, so it ignores them. Edits republish the

@@ -165,7 +165,7 @@ describe('profile share bodies', () => {
 
   it("a hidden name's own profile still loads its bodies", async () => {
     resetQdnSearchCache();
-    localStorage.setItem('qshareplus-settings', JSON.stringify({ hiddenNames: ['Hank'] }));
+    localStorage.setItem('qshare-settings', JSON.stringify({ hiddenNames: ['Hank'] }));
     resetSettingsCache();
     onTestFinished(() => resetSettingsCache());
     mockFetch('/arbitrary/resources/search', [share('Hank', 'hank-one', 'Hank share')]);
@@ -178,7 +178,7 @@ describe('profile share bodies', () => {
 
   it("a hidden name's profile keeps the same rules after Back", async () => {
     resetQdnSearchCache();
-    localStorage.setItem('qshareplus-settings', JSON.stringify({ hiddenNames: ['Ivy'] }));
+    localStorage.setItem('qshare-settings', JSON.stringify({ hiddenNames: ['Ivy'] }));
     resetSettingsCache();
     onTestFinished(() => resetSettingsCache());
     mockFetch('/arbitrary/resources/search', [share('Ivy', 'ivy-slow', 'Slow Ivy'), share('Ivy', 'ivy-gone', 'Gone Ivy')]);

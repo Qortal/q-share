@@ -4,7 +4,7 @@ import { useSyncExternalStore } from "react";
  * App settings kept on this device (localStorage). Additive and local: nothing
  * here is written to QDN. Components read them with `useAppSettings()`.
  */
-export const SETTINGS_STORAGE_KEY = "qshareplus-settings";
+export const SETTINGS_STORAGE_KEY = "qshare-settings";
 
 export type SortOrder = "newest" | "oldest";
 export type ListView = "list" | "grid";

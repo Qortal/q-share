@@ -184,7 +184,7 @@ function copyTarget(href: string): { kind: CopyKind; text: string } | null {
  *   allow-popups or allow-top-navigation) blocks mailto: and tel:.
  * - Any other link becomes its text. A relative or same-origin link would
  *   load another page of the node, such as another Q-App, inside this
- *   frame, and Hub would still treat that page as Q-Share+. A link with no
+ *   frame, and Hub would still treat that page as Q-Share. A link with no
  *   href left (Quill stores qortal: links as about:blank) becomes text too,
  *   so a qortal:// URL in it is linkified afterwards.
  */

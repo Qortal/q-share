@@ -77,7 +77,7 @@ describe('NavBar', () => {
 
     const column = header.firstElementChild as HTMLElement;
     expect(getComputedStyle(column).maxWidth).toBe('1200px');
-    expect(column).toContainElement(screen.getByRole('button', { name: 'Q-Share+ home' }));
+    expect(column).toContainElement(screen.getByRole('button', { name: 'Q-Share home' }));
     expect(column).toContainElement(screen.getByRole('button', { name: 'Account menu for alice' }));
   });
 });
@@ -87,23 +87,23 @@ describe('NavBar tagline', () => {
     mockPhone(false);
     renderWithProviders(<NavBar {...baseProps} isAuthenticated={false} userName="" authenticate={() => {}} />);
 
-    const home = screen.getByRole('button', { name: 'Q-Share+ home' });
+    const home = screen.getByRole('button', { name: 'Q-Share home' });
     const tagline = screen.getByText(TAGLINE);
     // Beside the button, in one row whose items share a baseline.
     const row = home.parentElement!;
     expect(row).toContainElement(tagline);
     expect(getComputedStyle(row).flexDirection).not.toBe('column');
     expect(getComputedStyle(row).alignItems).toBe('baseline');
-    expect(getComputedStyle(tagline).color).not.toBe(getComputedStyle(screen.getByText('Q-Share+')).color);
+    expect(getComputedStyle(tagline).color).not.toBe(getComputedStyle(screen.getByText('Q-Share')).color);
   });
 
   it("stays out of the home button, whose name holds all of the button's visible text", () => {
     mockPhone(false);
     renderWithProviders(<NavBar {...baseProps} isAuthenticated={false} userName="" authenticate={() => {}} />);
 
-    const home = screen.getByRole('button', { name: 'Q-Share+ home' });
+    const home = screen.getByRole('button', { name: 'Q-Share home' });
     expect(home).not.toContainElement(screen.getByText(TAGLINE));
-    expect(home).toHaveTextContent(/^Q-Share\+$/);
+    expect(home).toHaveTextContent(/^Q-Share$/);
   });
 
   it('never makes the header taller: where it does not fit whole, its one clipped line hides it', () => {
@@ -124,7 +124,7 @@ describe('NavBar tagline', () => {
     renderWithProviders(
       <NavBar {...baseProps} isAuthenticated userName="alice" accountNames={[{ name: 'alice' }]} authenticate={() => {}} />
     );
-    expect(screen.getByRole('button', { name: 'Q-Share+ home' })).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: 'Q-Share home' })).toBeInTheDocument();
     expect(screen.queryByText(TAGLINE)).not.toBeInTheDocument();
   });
 });
