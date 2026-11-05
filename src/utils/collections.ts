@@ -722,7 +722,7 @@ export async function publishCollection(input: {
 }): Promise<Collection> {
   const before = input.previous ?? getCachedCollection(input.name, input.identifier);
   const previous = input.previous ? allCollectionItems(input.previous) : (input.previousItems ?? (before ? allCollectionItems(before) : []));
-  // A copy always names its source's owner first, so their Q-Share+ finds it.
+  // A copy always names its source's owner first, so their Q-Share finds it.
   const leading = input.body.copiedFrom ? [input.body.copiedFrom.name] : [];
   const recipients = await markedShareOwners(input.name, previous, allCollectionItems(input.body), leading);
   const payload = await buildCollectionPublish({ ...input, recipients });

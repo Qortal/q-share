@@ -14,7 +14,7 @@ import {
 } from "../../../utils/notifications/hubAlerts";
 
 /**
- * Settings → Notifications → Alerts while Q-Share+ is closed. Asks Hub
+ * Settings → Notifications → Alerts while Q-Share is closed. Asks Hub
  * whether it has app alerts at all; turning it on lets Hub slide down its
  * permission banner, then hands Hub the rules. On this device only, per
  * account. `row` is the Settings page's row layout.
@@ -65,18 +65,18 @@ export function HubAlertsSetting({ row: Row }: { row: ElementType }) {
   return (
     <Row>
       <Box sx={{ flex: "1 1 260px", minWidth: 0 }}>
-        <Typography sx={{ fontWeight: 700 }}>Alerts while Q-Share+ is closed</Typography>
+        <Typography sx={{ fontWeight: 700 }}>Alerts while Q-Share is closed</Typography>
         <Typography variant="body2" color="text.secondary">
           {available === false
             ? "This Hub doesn't offer app alerts."
-            : `Qortal Hub tells you about new comments on your ${HUB_SHARE_RULES} newest shares and replies to your ${HUB_REPLY_RULES} newest comments, even when Q-Share+ isn't open. Hub asks you to allow it first. In GO, alerts come while GO keeps running in the background. Collection adds show in the bell next time you open Q-Share+.`}
+            : `Qortal Hub tells you about new comments on your ${HUB_SHARE_RULES} newest shares and replies to your ${HUB_REPLY_RULES} newest comments, even when Q-Share isn't open. Hub asks you to allow it first. In GO, alerts come while GO keeps running in the background. Collection adds show in the bell next time you open Q-Share.`}
         </Typography>
       </Box>
       <Switch
         checked={enabled}
         disabled={available !== true || busy}
         onChange={(e) => void toggle(e.target.checked)}
-        slotProps={{ input: { "aria-label": "Alerts while Q-Share+ is closed" } }}
+        slotProps={{ input: { "aria-label": "Alerts while Q-Share is closed" } }}
       />
     </Row>
   );

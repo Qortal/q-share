@@ -893,7 +893,7 @@ export const MultiplePublish = ({ publishes, isOpen, replaces, onSubmit, onError
               finishes. If you stop, the files already on QDN stay in your draft and aren't sent again.
             </Typography>
             {approved ? (
-              <Alert severity="info">Hub approves Q-Share+'s publishes for this session, so it won't ask for each batch.</Alert>
+              <Alert severity="info">Hub approves Q-Share's publishes for this session, so it won't ask for each batch.</Alert>
             ) : (
               <Box>
                 <FormControlLabel
@@ -902,7 +902,7 @@ export const MultiplePublish = ({ publishes, isOpen, replaces, onSubmit, onError
                   sx={{ minHeight: 44, mr: 0 }}
                 />
                 <Typography variant="body2" color="text.secondary">
-                  Hub asks once, then publishes from Q-Share+ without asking again until you close this tab. Otherwise
+                  Hub asks once, then publishes from Q-Share without asking again until you close this tab. Otherwise
                   Hub asks you to confirm each of the {batches.length} batches.
                 </Typography>
               </Box>

@@ -53,7 +53,7 @@ describe("Hub alert rules", () => {
     // Newest first: share 39 is in, share 0 (the oldest) is not.
     expect(rules[0]).toEqual({
       notificationId: "qshare-c-039_metadata",
-      link: "qortal://APP/Q-Share+/share/alice/qshare_file_s39_abc039_metadata/comments",
+      link: "qortal://APP/Q-Share/share/alice/qshare_file_s39_abc039_metadata/comments",
       image: "/arbitrary/THUMBNAIL/{name}/qortal_avatar?async=true",
       message: { en: "{name} commented on your share “Share 39”" },
       filters: {
@@ -65,7 +65,7 @@ describe("Hub alert rules", () => {
     });
     expect(rules.find((r) => r.notificationId === "qshare-r-cm0029")).toEqual({
       notificationId: "qshare-r-cm0029",
-      link: "qortal://APP/Q-Share+/comment/{name}/{identifier}",
+      link: "qortal://APP/Q-Share/comment/{name}/{identifier}",
       image: "/arbitrary/THUMBNAIL/{name}/qortal_avatar?async=true",
       message: { en: "{name} replied to your comment" },
       filters: { service: "BLOG_COMMENT", identifier: "_reply_cm0029_", excludeBlocked: true },
@@ -75,7 +75,7 @@ describe("Hub alert rules", () => {
 
   it("encode names in links and shorten long titles", () => {
     const [rule] = buildHubRules(activity(1, 0));
-    expect(rule.link).toBe("qortal://APP/Q-Share+/share/Simon%20James/qshare_file_s0_abc000_metadata/comments");
+    expect(rule.link).toBe("qortal://APP/Q-Share/share/Simon%20James/qshare_file_s0_abc000_metadata/comments");
     expect(rule.message.en).toBe(
       "{name} commented on your share “A very long title for a share that goes on and on past sixt…”"
     );
@@ -198,7 +198,7 @@ describe("Hub alerts on and off", () => {
   });
 });
 
-describe("Settings → Alerts while Q-Share+ is closed", () => {
+describe("Settings → Alerts while Q-Share is closed", () => {
   beforeEach(() => {
     reset();
     resetActivity();
@@ -215,7 +215,7 @@ describe("Settings → Alerts while Q-Share+ is closed", () => {
     mockQortalAction("NOTIFICATION_REMOVE", true);
     const Row = ({ children }: { children: React.ReactNode }) => <div>{children}</div>;
     renderWithProviders(<HubAlertsSetting row={Row} />);
-    const toggle = screen.getByRole("switch", { name: "Alerts while Q-Share+ is closed" });
+    const toggle = screen.getByRole("switch", { name: "Alerts while Q-Share is closed" });
     await waitFor(() => expect(toggle).toBeEnabled());
     expect(toggle).not.toBeChecked();
 
@@ -236,6 +236,6 @@ describe("Settings → Alerts while Q-Share+ is closed", () => {
     const Row = ({ children }: { children: React.ReactNode }) => <div>{children}</div>;
     renderWithProviders(<HubAlertsSetting row={Row} />);
     expect(await screen.findByText("This Hub doesn't offer app alerts.")).toBeInTheDocument();
-    expect(screen.getByRole("switch", { name: "Alerts while Q-Share+ is closed" })).toBeDisabled();
+    expect(screen.getByRole("switch", { name: "Alerts while Q-Share is closed" })).toBeDisabled();
   });
 });

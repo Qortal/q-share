@@ -74,7 +74,7 @@ describe("copying a collection", { timeout: 20_000 }, () => {
     const publish = qortalCallsFor("PUBLISH_QDN_RESOURCE")[0];
     expect(publish).toMatchObject({ name: "alice", service: "DOCUMENT", tag1: "qshare_collection_", title: "My music" });
     expect(String(publish.identifier)).toMatch(/^qshare_collection_my-music_[a-z0-9]{6}$/);
-    // The source's owner is named in the markers, so their Q-Share+ finds the copy.
+    // The source's owner is named in the markers, so their Q-Share finds the copy.
     expect(String(publish.description)).toContain(recipientMarker(DJ_ADDRESS));
     const body = JSON.parse(atob(String(publish.data64)));
     expect(body).toMatchObject({ title: "My music", items: source().items, folders: source().folders, cover: source().cover });

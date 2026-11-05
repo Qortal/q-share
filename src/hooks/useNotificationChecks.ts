@@ -15,7 +15,7 @@ export const FIRST_CHECK_DELAY_MS = 4_000;
 /** Opening the list checks again only when the last check is older than this. */
 export const ON_DEMAND_MIN_AGE_MS = 30_000;
 
-const CHECK_EVENT = "qshareplus:check-notifications";
+const CHECK_EVENT = "qshare:check-notifications";
 
 /**
  * Whether the app is out of sight. Hub hides a background app tab with

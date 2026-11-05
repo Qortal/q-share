@@ -1,5 +1,5 @@
 /**
- * Alerts from Qortal Hub while Q-Share+ is closed (Hub's NOTIFICATION_* API).
+ * Alerts from Qortal Hub while Q-Share is closed (Hub's NOTIFICATION_* API).
  *
  * Hub keeps rules per account and hands them to its node, which pushes an
  * event when a brand-new QDN resource matches one; Hub shows it in its bell
@@ -8,7 +8,7 @@
  * matches, so adding a share to an existing collection can't raise an alert:
  * collection adds wait for the in-app list.
  *
- * Rules (identifier filters, so comments written in the original Q-Share
+ * Rules (identifier filters, so comments written in Q-Share 1.0
  * match too):
  * - one per share, for its comments: `qcomment_v1_qshare_<key>_` as a prefix;
  * - one per comment of yours, for replies to it: `_reply_<last 6>_` anywhere.
@@ -27,10 +27,10 @@ import { HUB_DIALOG_GRACE_MS, isHubTimeout } from "../hubErrors";
 export const HUB_SHARE_RULES = 30;
 export const HUB_REPLY_RULES = 20;
 /** The published app's name, written literally: Hub never decodes `%2B` in app names. */
-export const HUB_APP_NAME = "Q-Share+";
+export const HUB_APP_NAME = "Q-Share";
 /** How long to wait for Hub to answer whether it has the API at all. */
 export const HUB_PROBE_TIMEOUT_MS = 5_000;
-const STORAGE_PREFIX = "qshareplus-hub-alerts-";
+const STORAGE_PREFIX = "qshare-hub-alerts-";
 const TITLE_MAX = 60;
 
 export interface HubRule {

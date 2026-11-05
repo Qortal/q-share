@@ -142,7 +142,7 @@ describe("NotificationsButton", () => {
   it("says when checks fail instead of waiting forever, with a way to try again", async () => {
     writeNotifications(ADDRESS, { ...EMPTY_STATE, lastError: Date.now() });
     const tries = vi.fn();
-    window.addEventListener("qshareplus:check-notifications", tries);
+    window.addEventListener("qshare:check-notifications", tries);
     render();
     fireEvent.click(bell());
     expect(await screen.findByText(/Couldn't check for new ones/)).toBeInTheDocument();
@@ -150,7 +150,7 @@ describe("NotificationsButton", () => {
     fireEvent.click(screen.getByRole("button", { name: "Try again" }));
     // Opening the list asked once, Try again once more.
     expect(tries).toHaveBeenCalledTimes(2);
-    window.removeEventListener("qshareplus:check-notifications", tries);
+    window.removeEventListener("qshare:check-notifications", tries);
   });
 
   it("uses a bottom sheet on phones", async () => {

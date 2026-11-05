@@ -246,7 +246,7 @@ describe("MultiplePublish in batches", () => {
     view.unmount();
     const second = vi.fn();
     renderWithProviders(<MultiplePublish isOpen publishes={share(21)} onSubmit={second} onError={vi.fn()} />);
-    expect(await screen.findByText(/Hub approves Q-Share\+'s publishes for this session/)).toBeInTheDocument();
+    expect(await screen.findByText(/Hub approves Q-Share's publishes for this session/)).toBeInTheDocument();
     expect(screen.queryByRole("switch")).not.toBeInTheDocument();
     fireEvent.click(screen.getByRole("button", { name: "Start publishing" }));
     await waitFor(() => expect(second).toHaveBeenCalledTimes(1));

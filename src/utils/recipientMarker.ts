@@ -1,6 +1,6 @@
 /**
  * Recipient markers: a short tag in a collection's QDN description for each
- * account owning one of its newest shares, so that account's Q-Share+ can
+ * account owning one of its newest shares, so that account's Q-Share can
  * find "my share was added to a collection" with one description search
  * instead of reading every collection.
  *
@@ -9,8 +9,8 @@
  * markedShareOwners), so a marker outlasts the publish that added it.
  * Addresses are public, and so is the share in the collection; the marker
  * names the account rather than the name so one search covers every name it
- * owns. Additive QDN metadata: the original Q-Share never reads collections,
- * and Q-Share+ strips markers wherever it shows a description.
+ * owns. Additive QDN metadata: Q-Share 1.0 never reads collections,
+ * and Q-Share strips markers wherever it shows a description.
  */
 
 export const MARKER_TAIL = 12;

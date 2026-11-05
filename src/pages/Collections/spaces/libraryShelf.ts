@@ -9,7 +9,7 @@ export const LIBRARY_SERIF = ["\"Iowan Old Style\"", "\"Palatino Linotype\"", "P
 export type LibraryView = "shelf" | "catalogue";
 export type LibrarySort = "added" | "title";
 
-const VIEW_KEY = "qshareplus-library-view";
+const VIEW_KEY = "qshare-library-view";
 
 export function readLibraryView(): LibraryView {
   try {

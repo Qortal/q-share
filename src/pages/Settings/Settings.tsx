@@ -482,14 +482,14 @@ export const Settings = () => {
       >
         <SectionTitle id="notifications-section-title">Notifications</SectionTitle>
         <Typography variant="body2" color="text.secondary" sx={{ mb: 1 }}>
-          The bell at the top lists them. Q-Share+ checks while it is open: every couple of minutes while you use
+          The bell at the top lists them. Q-Share checks while it is open: every couple of minutes while you use
           it, less often when nothing happens, and as soon as you come back to it.
         </Typography>
         <Row>
           <Box>
             <Typography sx={{ fontWeight: 700 }}>Comments and replies</Typography>
             <Typography variant="body2" color="text.secondary">
-              When someone comments on one of your shares or replies to your comment, in Q-Share+ or in Q-Share.
+              When someone comments on one of your shares or replies to your comment.
             </Typography>
           </Box>
           <Switch
@@ -502,7 +502,7 @@ export const Settings = () => {
           <Box>
             <Typography sx={{ fontWeight: 700 }}>Added to a collection</Typography>
             <Typography variant="body2" color="text.secondary">
-              When someone adds one of your shares to their collection, or copies one of your collections, in Q-Share+.
+              When someone adds one of your shares to their collection, or copies one of your collections.
             </Typography>
           </Box>
           <Switch

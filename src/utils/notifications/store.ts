@@ -1,10 +1,10 @@
 /**
  * The notification list, per account, kept on this device (localStorage
- * `qshareplus-notifications-<address>`). Nothing here goes to QDN.
+ * `qshare-notifications-<address>`). Nothing here goes to QDN.
  */
 import { useSyncExternalStore } from "react";
 
-export const NOTIFICATIONS_STORAGE_PREFIX = "qshareplus-notifications-";
+export const NOTIFICATIONS_STORAGE_PREFIX = "qshare-notifications-";
 export const MAX_ITEMS = 100;
 const MAX_SEEN = 1000;
 
