@@ -14,6 +14,33 @@ export interface Release {
 /** Newest first. Keep this in step with CHANGELOG.md. */
 export const CHANGELOG: Release[] = [
   {
+    version: "2.1.0",
+    date: "2026-11-05",
+    title: "Notifications, 300 files, folders, playlists and collection spaces",
+    notes: [
+      "Share up to 300 files at once. Big shares go out in batches of 20 that the network accepts, the share itself once all its files are there, and you can let Hub approve every batch at once.",
+      "If publishing stops halfway, the files already on QDN stay in your draft, so publishing again sends only the rest.",
+      "Collections can have folders (and folders inside folders) and covers. Move a share between folders, or add it straight to one: Add to collection keeps each collection's folders folded until you open them.",
+      "Shares with several audio files play as a playlist, in a player that keeps going while you browse.",
+      "Sort by name in the Share form puts numbered tracks in order.",
+      "Collections show their shares as a grid of cards, with a List/Grid switch of their own.",
+      "Shares get a thumbnail, made on your device from the first image or video, or a picture you choose. Cards and rows show it.",
+      "Copy someone's collection into yours. Your copy names the original, and its owner gets a notification.",
+      "Explore collections, under the filters on Home: everyone else's collections, with a search of their own, and yours at the top with a summary.",
+      "Deleting a collection, or removing or moving a share in one, shows at once, and comes back if Hub says no.",
+      "Remove from QDN on your own share pages replaces the share and its files with an empty marker.",
+      "File rows are compact, with Download next to Play.",
+      "Audio shows the cover art inside its files, and a share of audio gets its thumbnail from it.",
+      "A share in one of your collections shows that collection and its cover on its page, with Add or Change cover.",
+      "A collection can choose a space, the look it and its folders open in: Music, Cinema, Library or Album.",
+      "In a Library, the collection's owner can give any book a cover of their own, and in Cinema any video, horizontal or vertical. In an Album, a PDF or other share without pictures can get a cover and stand among the photos.",
+      "Opening a menu, a list or a dialog no longer moves the page sideways or hides the header.",
+      "A bell at the top tells you when someone comments on your shares, replies to your comments, adds your share to a collection or copies one of your collections.",
+      "Turn on Hub alerts in Settings → Notifications, and Qortal Hub tells you about new comments even while Q-Share is closed.",
+      "In a dark Hub, refreshing Q-Share on any page but the first no longer shows it in its light colours.",
+    ],
+  },
+  {
     version: "2.0.0",
     date: "2026-10-07",
     title: "Q-Share 2.0",
